@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!-- saved from url=(0197)https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-ST0151EN-SkillsNetwork/labs/Templates/cheat_sheet_statistics_with_python.md.html?origin=www.coursera.org -->
+<html lang="en" data-redeviation-bs-uid="23524"><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><style lang="en" type="text/css" id="dark-mode-custom-style"></style><style lang="en" type="text/css" id="dark-mode-native-style"></style><style lang="en" type="text/css" id="dark-mode-native-sheet"></style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./cheat_sheet_statistics_with_python.md_files/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./cheat_sheet_statistics_with_python.md_files/default.min.css">
+  <style>undefined</style><style type="text/css">/* this file is used for labs on cognitiveclass.ai that were written in markdown */
+
+/* applies to images, i.e. "![]()" in markdown */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* add padding and margins */
+body {
+  padding: 10px;
+  margin: 10px;
+}
+
+/* applies to tables, i.e. "|--|--|" in markdown */
+table td,
+table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+/* applies to using quotes, i.e. ">" in markdown */
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 1em 10px 0.1em 10px;
+  quotes: '\201C''\201D''\2018''\2019';
+}
+
+/* the headers need some spacing */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+  padding-top: 20px;
+}
+
+/* Add padding between nested list item */
+ul > li > ul {
+  padding-bottom: 1rem;
+}
+
+.code-badge-language {
+  display: none;
+}
+.code-badge-copy-icon {
+  background: url('data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhciIgZGF0YS1pY29uPSJjb3B5IiBjbGFzcz0ic3ZnLWlubGluZS0tZmEgZmEtY29weSBmYS13LTE0IiByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDQ0OCA1MTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTQzMy45NDEgNjUuOTQxbC01MS44ODItNTEuODgyQTQ4IDQ4IDAgMCAwIDM0OC4xMTggMEgxNzZjLTI2LjUxIDAtNDggMjEuNDktNDggNDh2NDhINDhjLTI2LjUxIDAtNDggMjEuNDktNDggNDh2MzIwYzAgMjYuNTEgMjEuNDkgNDggNDggNDhoMjI0YzI2LjUxIDAgNDgtMjEuNDkgNDgtNDh2LTQ4aDgwYzI2LjUxIDAgNDgtMjEuNDkgNDgtNDhWOTkuODgyYTQ4IDQ4IDAgMCAwLTE0LjA1OS0zMy45NDF6TTI2NiA0NjRINTRhNiA2IDAgMCAxLTYtNlYxNTBhNiA2IDAgMCAxIDYtNmg3NHYyMjRjMCAyNi41MSAyMS40OSA0OCA0OCA0OGg5NnY0MmE2IDYgMCAwIDEtNiA2em0xMjgtOTZIMTgyYTYgNiAwIDAgMS02LTZWNTRhNiA2IDAgMCAxIDYtNmgxMDZ2ODhjMCAxMy4yNTUgMTAuNzQ1IDI0IDI0IDI0aDg4djIwMmE2IDYgMCAwIDEtNiA2em02LTI1NmgtNjRWNDhoOS42MzJjMS41OTEgMCAzLjExNy42MzIgNC4yNDMgMS43NTdsNDguMzY4IDQ4LjM2OGE2IDYgMCAwIDEgMS43NTcgNC4yNDNWMTEyeiI+PC9wYXRoPjwvc3ZnPg==');
+  background-size: 100% 100%;
+}
+
+.code-badge {
+  bottom: 0 !important;
+  top: unset !important;
+  background: unset !important;
+}
+
+.code-badge > .code-badge-check-icon {
+  background: green;
+}
+.code-badge-check-icon {
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 0 7px;
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGFyaWEtaGlkZGVuPSJ0cnVlIiBmb2N1c2FibGU9ImZhbHNlIiBkYXRhLXByZWZpeD0iZmFzIiBkYXRhLWljb249ImNoZWNrIiBjbGFzcz0ic3ZnLWlubGluZS0tZmEgZmEtY2hlY2sgZmEtdy0xNiIgcm9sZT0iaW1nIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9IiYjMTA7ICAgIGNvbG9yOiAjMmFmZjMyOyYjMTA7Ij48cGF0aCBmaWxsPSJjdXJyZW50Q29sb3IiIGQ9Ik0xNzMuODk4IDQzOS40MDRsLTE2Ni40LTE2Ni40Yy05Ljk5Ny05Ljk5Ny05Ljk5Ny0yNi4yMDYgMC0zNi4yMDRsMzYuMjAzLTM2LjIwNGM5Ljk5Ny05Ljk5OCAyNi4yMDctOS45OTggMzYuMjA0IDBMMTkyIDMxMi42OSA0MzIuMDk1IDcyLjU5NmM5Ljk5Ny05Ljk5NyAyNi4yMDctOS45OTcgMzYuMjA0IDBsMzYuMjAzIDM2LjIwNGM5Ljk5NyA5Ljk5NyA5Ljk5NyAyNi4yMDYgMCAzNi4yMDRsLTI5NC40IDI5NC40MDFjLTkuOTk4IDkuOTk3LTI2LjIwNyA5Ljk5Ny0zNi4yMDQtLjAwMXoiLz48L3N2Zz4=');
+  background-size: 100% 100%;
+}
+</style><style class="redeviation-bs-style" data-name="content">/*! (c) Philipp König under GPL-3.0 */
+body>div#redeviation-bs-indicator>div{opacity:0;pointer-events:none}body>#redeviation-bs-sidebar.redeviation-bs-visible,body>#redeviation-bs-overlay.redeviation-bs-visible{opacity:1;pointer-events:auto}body.redeviation-bs-noscroll{overflow:hidden !important}body>div#redeviation-bs-indicator>div{position:absolute;transform:translate3d(-24px, 0, 0);top:0;left:0;width:24px !important;height:100%;background:rgba(0,0,0,0.5);border-radius:0 10px 10px 0;transition:opacity 0.3s, transform 0.3s;z-index:2}body>div#redeviation-bs-indicator>div>span{-webkit-mask:no-repeat center/24px;-webkit-mask-image:url(chrome-extension://jdbnofccmhefkmjbkkdkfiicjkgofkdh/img/icon-bookmark.svg);background-color:#ffffff;position:absolute;display:block;top:0;left:0;width:100%;height:100%}body>div#redeviation-bs-indicator[data-pos='right']{left:auto;right:0}body>div#redeviation-bs-indicator[data-pos='right']>div{transform:translate3d(24px, 0, 0);left:auto;right:0;border-radius:10px 0 0 10px}body>div#redeviation-bs-indicator.redeviation-bs-fullHeight>div{border-radius:0}body>div#redeviation-bs-indicator.redeviation-bs-hover>div{transform:translate3d(0, 0, 0);opacity:1}body>div#redeviation-bs-indicator[data-pos='left'].redeviation-bs-has-lsb{height:100% !important;top:0 !important}body>div#redeviation-bs-indicator[data-pos='left'].redeviation-bs-has-lsb>div{background:transparent}body>div#redeviation-bs-indicator[data-pos='left'].redeviation-bs-has-lsb>div>span{-webkit-mask-position-y:20px}body>#redeviation-bs-sidebar{width:350px;max-width:none;height:0;z-index:2147483646;background-color:rgba(0,0,0,0.6) !important;color-scheme:normal !important;speak:none;border:none;display:block !important;transform:translate3d(-350px, 0, 0);transition:width 0s 0.3s, height 0s 0.3s, opacity 0.3s, transform 0.3s}body>#redeviation-bs-sidebar[data-pos='right']{left:auto;right:0;transform:translate3d(350px, 0, 0)}body>#redeviation-bs-sidebar.redeviation-bs-visible{width:calc(100% + 350px);height:100%;transform:translate3d(0, 0, 0);transition:opacity 0.3s, transform 0.3s}body>#redeviation-bs-sidebar.redeviation-bs-hideMask{background:none !important}body>#redeviation-bs-sidebar.redeviation-bs-hideMask:not(.redeviation-bs-hover){width:calc(350px + 50px)}body>#redeviation-bs-overlay{width:100%;max-width:none;height:100%;z-index:2147483647;border:none;speak:none;background:rgba(0,0,0,0.5) !important;transition:opacity 0.3s}
+</style><link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin="true"><link rel="preconnect" href="https://fonts.gstatic.com/"><link rel="stylesheet" href="./cheat_sheet_statistics_with_python.md_files/css2"></head>
+  <body>
+    <img src="./cheat_sheet_statistics_with_python.md_files/IDSNlogo.png" width="300">
+    <h1>Cheat Sheet for Statistical Analysis in Python</h1>
+    <h2>Table of contents</h2>
+    <p>This is a summary of the libraries and functions we used in the course.</p>
+    <ol>
+      <li><a href="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-ST0151EN-SkillsNetwork/labs/Templates/cheat_sheet_statistics_with_python.md.html?origin=www.coursera.org#average">Descriptive Statistics</a></li>
+      <li><a href="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-ST0151EN-SkillsNetwork/labs/Templates/cheat_sheet_statistics_with_python.md.html?origin=www.coursera.org#seaborn">Data Visualization</a></li>
+      <li><a href="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-ST0151EN-SkillsNetwork/labs/Templates/cheat_sheet_statistics_with_python.md.html?origin=www.coursera.org#Testing">Hypothesis Testing</a></li>
+    </ol>
+    <h2>Descriptive Statistics</h2>
+    <p>Here is a quick review of some popular functions:</p>
+    <ul>
+      <li>To find the average of the data, we use the <code>mean()</code> function</li>
+      <li>To find the median of the data, we use the <code>median()</code> function</li>
+      <li>To find the mode of the data, we use the <code>mode()</code> function</li>
+      <li>To find the variance of the data, we use the <code>variance()</code> function</li>
+      <li>To find the standard deviation of the data, we use the <code>stdev()</code> function</li>
+      <li>To get the unique values in a dataset, we use the <code>unique()</code>. <code>unique()</code> prints out the values and <code>nunique()</code> prints out the number of unique values.</li>
+    </ul>
+    <h2>Data Visualization</h2>
+    <p>
+      One of the most popular visualization tools is the <code>seaborn</code> library. It is a Python Data visualization library that is based on <code>matplotlib</code>. You can learn more <a href="https://seaborn.pydata.org/?utm_medium=Exinfluencer&amp;utm_source=Exinfluencer&amp;utm_content=000026UJ&amp;utm_term=10006555&amp;utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMDeveloperSkillsNetworkST0151ENSkillsNetwork20531532-2022-01-01" target="_blank" rel="external">here</a>.
+      To get access to functions in the <code>seaborn</code> library or any library, you must first import the library. To import the <code>seaborn</code> library: <code>import seaborn</code>.
+    </p>
+    <p>Here is a quick summary for creating graphs and plots:</p>
+    <ul>
+      <li>Barplots: A barplot shows the relationship between a numeric and a categorical variable by plotting the categorical variables as bars in correspondence to the numerical variable. In the seaborn library, barplots are created by using the <code>barplot()</code> function. The following code <code>ax = seaborn.barplot(x="division", y="eval", data=division_eval)</code> will return a barplot that shows the average evaluation scores for the lower-division and upper-division.</li>
+    </ul>
+    <img src="./cheat_sheet_statistics_with_python.md_files/Barplots.png">
+    <ul>
+      <li>Scatterplots: This is a two-dimensional plot that displays the relationship between two continuous data. Scatter plots are created by using the <code>scatterplot()</code> function in the seaborn library.</li>
+    </ul>
+    <p>The following code: <code>ax = seaborn.scatterplot(x='age', y='eval', hue='gender', data=ratings_df)</code> will return a plot that shows the relationship between age and evaluation scores:</p>
+    <img src="./cheat_sheet_statistics_with_python.md_files/Screen_Shot_2020-10-26_at_3.17.26_PM.png">
+    <ul>
+      <li>Boxplots: A boxplot is a way of displaying the distribution of the data. It returns the minimum, first quartile, median, third quartile, and maximum values of the data. We use the <code>boxplot()</code> function in the seaborn library. This code <code>ax = seaborn.boxplot(y='beauty', data=ratings_df)</code> will return a boxplot with the data distribution for beauty. We can make the boxplots horizontal by specifying <code>x='beauty'</code> in the argument.</li>
+    </ul>
+    <img src="./cheat_sheet_statistics_with_python.md_files/boxplots.png">
+    <p>Other useful functions include <code>catplot()</code> to represent the relationship between a numerical value and one or more categorical variables, <code>distplot()</code>, and <code>histplot</code> for plotting histograms.</p>
+    <h2>Hypothesis Testing</h2>
+    <ul>
+      <li>
+        <p>Use the <code>norm.cdf()</code> function in the <code>scipy.stats</code> library to find the standardized (z-score) value. In cases where we are looking for the area to the right of the curve, we will remove the results above from 1. Remember to <code>import scipy.stats</code></p>
+      </li>
+      <li>
+        <p>Levene's test for equal variance: Levene's test is a test used to check for equality of variance among groups. We use the <code>scipy.stats.levene()</code> from the <code>scipy.stats</code> library.</p>
+      </li>
+      <li>
+        <p>T-test for two independent samples: This test compares the means of two independent groups to determine whether there is a significant difference in means for both groups. We use the <code>scipy.stats.ttest_ind()</code> from the <code>scipy.stats</code> library.</p>
+      </li>
+      <li>
+        <p>One-way ANOVA: It compares the mean between two or more independent groups to determine whether there is a statistical significance between them. We use the <code>scipy.stats.f_oneway()</code> from the <code>scipy.stats</code> library or you can use the <code>anova_lm()</code> from the <code>statsmodels</code> library.</p>
+      </li>
+      <li>
+        <p>Chi-square (𝜒2) test for association: Chi-square test for association tests the association between two categorical variables. To do this we must first create a crosstab of the counts in each group. We do this by using the <code>crosstab()</code> function in the <code>pandas</code> library. Then the <code>scipy.stats.chi2_contingency()</code> on the contingency table - it returns the 𝜒2 value, p-value, degree of freedom and expected values.</p>
+      </li>
+      <li>
+        <p>Pearson Correlation: Tests the correlation between two continuous variables. we use the <code>scipy.stats.pearsonr()</code> to get the correlation coefficient</p>
+      </li>
+      <li>
+        <p>To run the tests using Regression analysis, you will need the <code>OLS()</code> from the <code>statsmodels</code> library. When running these tests using regression analysis, you have <code>fit()</code> the model, make predictions using <code>predict()</code> and print out the model summary using <code>model.summary()</code></p>
+      </li>
+    </ul>
+    <h2>Author(s)</h2>
+    <p><a href="https://www.linkedin.com/in/aije-egwaikhide/?utm_medium=Exinfluencer&amp;utm_source=Exinfluencer&amp;utm_content=000026UJ&amp;utm_term=10006555&amp;utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMDeveloperSkillsNetworkST0151ENSkillsNetwork20531532-2022-01-01" target="_blank" rel="external">Aije Egwaikhide</a></p>
+    <h2>Changelog</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Version</th>
+          <th>Changed by</th>
+          <th>Change Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2020-10-26</td>
+          <td>1.0</td>
+          <td>Aije</td>
+          <td>Created the initial version of Statistics with python cheat sheet</td>
+        </tr>
+      </tbody>
+    </table>
+    <script>window.addEventListener('load', function() {
+snFaculty.inject();
+});</script>
+    <script src="./cheat_sheet_statistics_with_python.md_files/inject.43989f87.js.transferir"></script>
+    <script src="./cheat_sheet_statistics_with_python.md_files/highlight.min.js.transferir"></script>
+    <script src="./cheat_sheet_statistics_with_python.md_files/highlightjs-badge.min.js.transferir"></script>
+  
+
+<style>
+@media print {
+   .code-badge { display: none; }
+}
+    .code-badge-pre {
+        position: relative;
+    }
+    .code-badge {
+        display: flex;
+        flex-direction: row;
+        white-space: normal;
+        background: transparent;
+        background: #333;
+        color: white;
+        font-size: 0.875em;
+        opacity: 0.5;
+        transition: opacity linear 0.5s;
+        border-radius: 0 0 0 7px;
+        padding: 5px 8px 5px 8px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .code-badge.active {
+        opacity: 0.8;
+    }
+
+    .code-badge:hover {
+        opacity: .95;
+    }
+
+    .code-badge a,
+    .code-badge a:hover {
+        text-decoration: none;
+    }
+
+    .code-badge-language {
+        margin-right: 10px;
+        font-weight: 600;
+        color: goldenrod;
+    }
+    .code-badge-copy-icon {
+        font-size: 1.2em;
+        cursor: pointer;
+        padding: 0 7px;
+        margin-top:2;
+    }
+    .fa.text-success:{ color: limegreen !important }
+</style><div id="CodeBadgeTemplate" style="display:none">
+    <div class="code-badge">
+        <div class="code-badge-language">{{language}}</div>
+        <div title="Copy to clipboard">
+            <i class="{{copyIconClass}} code-badge-copy-icon"></i>
+        </div>
+     </div>
+</div><app-frame-23524 id="redeviation-bs-sidebar" class="notranslate" aria-hidden="true" data-theme="default" data-pos="left"></app-frame-23524><div id="redeviation-bs-indicator" data-theme="default" class="redeviation-bs-fullHeight" style="height: 100%; top: 0%;"></div></body></html>
